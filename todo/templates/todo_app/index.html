@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'C:/Users/rntan/Desktop/TODO/todo/static/css/style.css' %}">
+        <title>todo</title>
+    </head>
+<body>
+    <div class="base">
+    <p>ToDo List</p>
+    <ul>
+      {% for item in all_items  %}
+      <li>{{ item.content  }}
+        <form action="/deleteTodo/{{item.id}}" 
+        style="display: inline;"
+        method="POST">
+            {% csrf_token %}
+        
+        <input class="delete" type="submit" value="X">
+        
+        
+        </form>
+    
+
+      </li><br>
+      {% endfor %}
+    </ul>
+
+    <form class="form" action="/addTodo/" method="POST">
+        {% csrf_token %}
+    <input class="text" type="text" name="content" placeholder="Add Item">
+    <input class="add" type="submit" value="+">
+    
+    
+    </form>
+    </div>
+
+<script src="{% static 'js/app.js' %}" ></script>
+    
+</body>
+</html>
